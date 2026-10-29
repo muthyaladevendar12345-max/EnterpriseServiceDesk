@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="AI\" />
+    <Folder Include="Agents\" />
+    <Folder Include="Knowledge\" />
+    <Folder Include="Workflows\" />
+    <Folder Include="Tools\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnterpriseServiceDesk.Core\EnterpriseServiceDesk.Core.csproj" />
+  </ItemGroup>
+
+</Project>

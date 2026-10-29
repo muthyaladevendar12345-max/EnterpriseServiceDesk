@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="EnterpriseServiceDesk.Api/EnterpriseServiceDesk.Api.csproj" />
+  <Project Path="EnterpriseServiceDesk.Core/EnterpriseServiceDesk.Core.csproj" />
+  <Project Path="EnterpriseServiceDesk.Infrastructure/EnterpriseServiceDesk.Infrastructure.csproj" />
+  <Project Path="EnterpriseServiceDesk.Mvc/EnterpriseServiceDesk.Mvc.csproj" />
+</Solution>
