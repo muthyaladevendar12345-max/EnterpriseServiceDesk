@@ -1,0 +1,81 @@
+﻿@model EnterpriseServiceDesk.Mvc.Models.LeaveBalancesViewModel
+
+@{
+    ViewData["Title"] = "My Leave Balances";
+}
+
+<div class="py-4">
+    <h2 class="fw-bold">My Leave Balances</h2>
+    <p class="text-muted">
+        View your recorded leave balances for the selected year.
+    </p>
+
+    <form asp-controller="LeaveBalances"
+          asp-action="Index"
+          method="get"
+          class="d-flex align-items-end gap-2 mb-4">
+
+        <div>
+            <label for="year" class="form-label">Year</label>
+            <input id="year"
+                   name="year"
+                   type="number"
+                   min="2000"
+                   max="9999"
+                   value="@Model.Year"
+                   class="form-control"
+                   required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            View balances
+        </button>
+    </form>
+
+    @if (Model.ErrorMessage is not null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+    else if (Model.Balances.Count == 0)
+    {
+        <div class="alert alert-info">
+            No leave balances were found for @Model.Year.
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Leave type</th>
+                            <th class="text-end">Allocated</th>
+                            <th class="text-end">Used</th>
+                            <th class="text-end">Remaining</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var balance in Model.Balances)
+                        {
+                            <tr>
+                                <td>@balance.LeaveType</td>
+                                <td class="text-end">
+                                    @balance.AllocatedDays.ToString("0.##")
+                                </td>
+                                <td class="text-end">
+                                    @balance.UsedDays.ToString("0.##")
+                                </td>
+                                <td class="text-end fw-bold text-success">
+                                    @balance.RemainingDays.ToString("0.##")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>

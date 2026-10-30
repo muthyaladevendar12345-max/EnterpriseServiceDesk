@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Contracts\" />
   </ItemGroup>
 

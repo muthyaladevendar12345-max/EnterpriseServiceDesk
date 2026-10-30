@@ -1,0 +1,53 @@
+﻿@model EnterpriseServiceDesk.Core.Dtos.Auth.LoginRequest
+
+@{
+    ViewData["Title"] = "Employee Login";
+}
+
+<div class="row justify-content-center py-5">
+    <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+                <h2 class="fw-bold mb-2">Employee Service Desk</h2>
+                <p class="text-muted mb-4">
+                    Sign in to access your support assistant.
+                </p>
+
+                <form asp-controller="Account"
+                      asp-action="Login"
+                      method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email"
+                               class="form-control"
+                               autocomplete="username" />
+                        <span asp-validation-for="Email"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password"
+                               type="password"
+                               class="form-control"
+                               autocomplete="current-password" />
+                        <span asp-validation-for="Password"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Sign in
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

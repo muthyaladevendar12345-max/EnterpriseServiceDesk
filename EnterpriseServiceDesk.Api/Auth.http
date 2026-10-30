@@ -1,0 +1,30 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@ApiBaseUrl = https://localhost:7018
+@AccessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDUxNzUzZS0zOTk2LTQzYWYtYWYwMC03ODNjZmQxODk3MzIiLCJqdGkiOiJiODZjZjY4Yi1mNDk5LTRkZDMtODg1NC00MDNiODA2NmY2ODkiLCJlbXBsb3llZV9pZCI6IjJkOGM0ZDIwLTQzMjctNDE4NS04NTAwLTRjZWI5YWIyYjI0ZiIsIm5hbWUiOiJTYW1wbGUgSFIgRW1wbG95ZWUiLCJlbWFpbCI6ImVtcGxveWVlLmhyQHNlcnZpY2VkZXNrLnRlc3QiLCJyb2xlIjoiRW1wbG95ZWUiLCJuYmYiOjE3OTMzNzMzMDIsImV4cCI6MTc5MzM3NTEwMiwiaXNzIjoiRW50ZXJwcmlzZVNlcnZpY2VEZXNrLkFwaSIsImF1ZCI6IkVudGVycHJpc2VTZXJ2aWNlRGVzay5NdmMifQ.wjbXg2rR1-kvgXivHPycHOOcEAjEqC5C3-iNe-jw3w4
+
+### Login
+POST {{ApiBaseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "employee.hr@servicedesk.test",
+  "password": "DevOnly-Hr#2026!"
+}
+
+### Protected endpoint without a token
+GET {{ApiBaseUrl}}/api/auth/me
+
+### Protected endpoint with a token
+GET {{ApiBaseUrl}}/api/auth/me
+Authorization: Bearer {{AccessToken}}
+
+### Get my current-year leave balances
+GET {{ApiBaseUrl}}/api/leave-balances/me
+Authorization: Bearer {{AccessToken}}
+
+### Invalid year
+GET {{ApiBaseUrl}}/api/leave-balances/me?year=1999
+Authorization: Bearer {{AccessToken}}
+
+### No authentication
+GET {{ApiBaseUrl}}/api/leave-balances/me

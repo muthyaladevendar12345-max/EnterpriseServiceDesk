@@ -10,8 +10,4 @@
     <ProjectReference Include="..\EnterpriseServiceDesk.Core\EnterpriseServiceDesk.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
