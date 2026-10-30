@@ -1,12 +1,16 @@
 using EnterpriseServiceDesk.Api.Services;
 using EnterpriseServiceDesk.Core.Interfaces;
+using EnterpriseServiceDesk.Infrastructure.Agents;
 using EnterpriseServiceDesk.Infrastructure.Data;
 using EnterpriseServiceDesk.Infrastructure.Identity;
 using EnterpriseServiceDesk.Infrastructure.Services;
+using EnterpriseServiceDesk.Infrastructure.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.AI;
 using Microsoft.IdentityModel.Tokens;
+using OllamaSharp;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -93,6 +97,20 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentEmployee, CurrentEmployee>();
 builder.Services.AddScoped<ILeaveBalanceService, LeaveBalanceService>();
 
+var ollamaEndpoint = builder.Configuration["Ollama:Endpoint"]
+    ?? throw new InvalidOperationException(
+        "Ollama:Endpoint is missing.");
+
+var ollamaChatModel = builder.Configuration["Ollama:ChatModel"]
+    ?? throw new InvalidOperationException(
+        "Ollama:ChatModel is missing.");
+
+builder.Services.AddSingleton<IChatClient>(_ =>
+    new OllamaApiClient(
+        new Uri(ollamaEndpoint),
+        ollamaChatModel));
+builder.Services.AddScoped<HrTools>();
+builder.Services.AddScoped<IHrAgentService, HrAgentService>();
 
 builder.Services.AddControllers();
 

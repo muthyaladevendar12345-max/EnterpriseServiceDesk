@@ -1,6 +1,6 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 @ApiBaseUrl = https://localhost:7018
-@AccessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDUxNzUzZS0zOTk2LTQzYWYtYWYwMC03ODNjZmQxODk3MzIiLCJqdGkiOiJiODZjZjY4Yi1mNDk5LTRkZDMtODg1NC00MDNiODA2NmY2ODkiLCJlbXBsb3llZV9pZCI6IjJkOGM0ZDIwLTQzMjctNDE4NS04NTAwLTRjZWI5YWIyYjI0ZiIsIm5hbWUiOiJTYW1wbGUgSFIgRW1wbG95ZWUiLCJlbWFpbCI6ImVtcGxveWVlLmhyQHNlcnZpY2VkZXNrLnRlc3QiLCJyb2xlIjoiRW1wbG95ZWUiLCJuYmYiOjE3OTMzNzMzMDIsImV4cCI6MTc5MzM3NTEwMiwiaXNzIjoiRW50ZXJwcmlzZVNlcnZpY2VEZXNrLkFwaSIsImF1ZCI6IkVudGVycHJpc2VTZXJ2aWNlRGVzay5NdmMifQ.wjbXg2rR1-kvgXivHPycHOOcEAjEqC5C3-iNe-jw3w4
+@AccessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDUxNzUzZS0zOTk2LTQzYWYtYWYwMC03ODNjZmQxODk3MzIiLCJqdGkiOiIyZWQzOTg2MS01MzVjLTQ4YzQtYjRjMy04OGNjMjBlMTIzMTciLCJlbXBsb3llZV9pZCI6IjJkOGM0ZDIwLTQzMjctNDE4NS04NTAwLTRjZWI5YWIyYjI0ZiIsIm5hbWUiOiJTYW1wbGUgSFIgRW1wbG95ZWUiLCJlbWFpbCI6ImVtcGxveWVlLmhyQHNlcnZpY2VkZXNrLnRlc3QiLCJyb2xlIjoiRW1wbG95ZWUiLCJuYmYiOjE3OTMzNzY3NDUsImV4cCI6MTc5MzM3ODU0NSwiaXNzIjoiRW50ZXJwcmlzZVNlcnZpY2VEZXNrLkFwaSIsImF1ZCI6IkVudGVycHJpc2VTZXJ2aWNlRGVzay5NdmMifQ.6p951KmCc-JSeZmCrB8iNMrJ5OTtS-_SbdXOkuN_lxE
 
 ### Login
 POST {{ApiBaseUrl}}/api/auth/login
@@ -28,3 +28,18 @@ Authorization: Bearer {{AccessToken}}
 
 ### No authentication
 GET {{ApiBaseUrl}}/api/leave-balances/me
+
+
+  ### Test MAF with Ollama
+POST {{ApiBaseUrl}}/api/ai-diagnostics/ollama
+Authorization: Bearer {{AccessToken}}
+
+
+### Ask HR for my balance
+POST {{ApiBaseUrl}}/api/agents/hr/ask
+Authorization: Bearer {{AccessToken}}
+Content-Type: application/json
+
+{
+  "message": "Check my current-year annual and sick leave balances."
+}
